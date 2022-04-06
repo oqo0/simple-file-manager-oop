@@ -26,9 +26,4 @@ public class Folder : IEntry
     {
         
     }
-
-    public int GetSize()
-    {
-        return int.MinValue;
-    }
 }

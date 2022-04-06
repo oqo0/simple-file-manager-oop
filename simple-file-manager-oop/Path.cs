@@ -3,6 +3,18 @@ namespace simple_file_manager_oop;
 public class Path
 {
     private static string _fullPath;
+
+    public static string fullPath
+    {
+        get
+        {
+            return _fullPath;
+        }
+        set
+        {
+            _fullPath = value;
+        }
+    }
     
     /// <summary>
     /// Очистить существующий путь
@@ -10,15 +22,6 @@ public class Path
     public static void Clear()
     {
         _fullPath = String.Empty; 
-    }
-
-    /// <summary>
-    /// Изменить путь на значение
-    /// </summary>
-    /// <param name="path">Новый путь</param>
-    public static void Set(string path)
-    {
-        _fullPath = path;
     }
 
     /// <summary>

@@ -7,5 +7,4 @@ public interface IEntry
     void Rename(string name);
     void Copy(string path);
     void Search();
-    int GetSize();
 }
