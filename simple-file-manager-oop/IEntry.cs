@@ -6,5 +6,4 @@ public interface IEntry
     void Delete();
     void Rename(string name);
     void Copy(string path);
-    void Search();
 }
