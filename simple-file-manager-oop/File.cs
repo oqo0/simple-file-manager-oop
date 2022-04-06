@@ -4,8 +4,14 @@ namespace simple_file_manager_oop;
 
 public class File : IEntry
 {
-    private string _path = Path.fullPath;
+    private string _path;
     private string _name;
+
+    public File(string name)
+    {
+        _path = Path.fullPath;
+        _name = name;
+    }
     
     public void Create(string name)
     {
@@ -45,32 +51,28 @@ public class File : IEntry
     /// Размер файла в нужном формате
     /// </summary>
     /// <returns></returns>
-    public long GetSize(UnitsOfData dataUnit)
+    public string GetSizeSimplified()
     {
-        long fileSize = new FileInfo(_path + _name).Length;
+        long fileSize = new FileInfo(_path + "/" + _name).Length;
         
-        switch (dataUnit)
+        switch (fileSize)
         {
-            case UnitsOfData.Byte:
-            {
-                return fileSize;
-                break;
-            }
-            case UnitsOfData.Kilobyte:
-            {
-                return 1024 * fileSize;
-                break;
-            }
-            case UnitsOfData.Megabyte:
-            {
-                return 1024 * 1024 * fileSize;
-                break;
-            }
+            case >= 1024 * 1024 * 1024:
+                return Convert.ToString(fileSize / 1024 / 1024 / 1024) + "gb";
+            case >= 1024 * 1024:
+                return Convert.ToString(fileSize / 1024 / 1024) + "mb";
+            case >= 1024:
+                return Convert.ToString(fileSize / 1024) + "kb";
             default:
-            {
-                return 0;
-                break;
-            }
+                return Convert.ToString(fileSize) + "b";
+        }
+    }
+
+    public string Name
+    {
+        get
+        {
+            return _name;
         }
     }
 }
