@@ -31,4 +31,5 @@ public abstract class Entry
     }
 
     public abstract void Copy(string path);
+    public abstract void Copy(string path, bool overwriteFile);
 }

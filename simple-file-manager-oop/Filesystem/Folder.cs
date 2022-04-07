@@ -17,7 +17,7 @@ public class Folder : Entry
         }
         catch
         {
-            Logger.Log("Could not create a folder.");
+            Logger.Log($"Could not create a folder {path}");
         }
     }
     
@@ -32,11 +32,25 @@ public class Folder : Entry
         }
         catch
         {
-            Logger.Log("Could not delete a folder.");
+            Logger.Log($"Could not delete a folder {base.Path}");
         }
     }
 
+    /// <summary>
+    /// Copy Folder
+    /// </summary>
+    /// <param name="path"></param>
     public override void Copy(string path)
+    {
+        
+    }
+    
+    /// <summary>
+    /// Copy Folder with override
+    /// </summary>
+    /// <param name="path"></param>
+    /// <param name="overrideFolder"></param>
+    public override void Copy(string path, bool overrideFolder)
     {
         
     }
