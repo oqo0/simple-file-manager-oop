@@ -2,13 +2,21 @@ namespace simple_file_manager_oop.Filesystem;
 
 public abstract class Entry
 {
-    private string _path;
+    private PathBuilder _path;
     private string _name;
 
     protected string Path
     {
-        get => _path;
-        set => _path = value;
+        get
+        {
+            return _path.path;
+        }
+        set
+        {
+            PathBuilder p = new PathBuilder();
+            p.path = value;
+            _path = p;
+        }
     }
     
     protected string Name
@@ -17,10 +25,11 @@ public abstract class Entry
         set => _name = value;
     }
     
+    protected Entry(string path) : this(path, "none") { }
     protected Entry(string path, string name)
     {
-        _path = path;
-        _name = name;
+        Path = path;
+        Name = name;
     }
     
     public abstract void Delete();

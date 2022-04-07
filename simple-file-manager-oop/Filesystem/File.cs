@@ -8,12 +8,11 @@ public class File : Entry
     /// Create a new file
     /// </summary>
     /// <param name="path">path to a new file</param>
-    /// <param name="name">name of a new file</param>
-    public static void Create(string path, string name)
+    public static void Create(string path)
     {
         try
         {
-            System.IO.File.Create(System.IO.Path.Combine(path, name));
+            System.IO.File.Create(System.IO.Path.Combine(path));
         }
         catch
         {

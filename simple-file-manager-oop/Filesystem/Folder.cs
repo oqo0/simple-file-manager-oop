@@ -2,18 +2,17 @@ namespace simple_file_manager_oop.Filesystem;
 
 public class Folder : Entry
 {
-    public Folder(string path, string name) : base(path, name) {}
+    public Folder(string path) : base(path) {}
     
     /// <summary>
     /// Create a new directory
     /// </summary>
     /// <param name="path">path whre to create</param>
-    /// <param name="name">name of a new dir</param>
-    public static void Create(string path, string name)
+    public static void Create(string path)
     {
         try
         {
-            Directory.CreateDirectory(path + name);
+            Directory.CreateDirectory(path);
         }
         catch
         {
@@ -69,6 +68,26 @@ public class Folder : Entry
         catch
         {
             Logger.Log($"Could not copy folder.");
+        }
+    }
+
+    public void ShowDirs()
+    {
+        string[] dirs = Directory.GetDirectories(Path);
+
+        foreach (string dir in dirs)
+        {
+            Console.WriteLine(dir);
+        }
+    }
+
+    public void ShowFiles()
+    {
+        string[] files = Directory.GetFiles(Path);
+
+        foreach (string file in files)
+        {
+            Console.WriteLine(file);
         }
     }
 }
