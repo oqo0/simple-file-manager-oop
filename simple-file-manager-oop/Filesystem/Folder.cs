@@ -37,21 +37,38 @@ public class Folder : Entry
     }
 
     /// <summary>
-    /// Copy Folder
-    /// </summary>
-    /// <param name="path"></param>
-    public override void Copy(string path)
-    {
-        
-    }
-    
-    /// <summary>
     /// Copy Folder with override
     /// </summary>
-    /// <param name="path"></param>
-    /// <param name="overrideFolder"></param>
-    public override void Copy(string path, bool overrideFolder)
+    /// <param name="destPath"></param>
+    /// <param name="overrideFile"></param>
+    public override void Copy(string destPath, bool overrideFile)
     {
-        
+        try
+        {
+            if (!Directory.Exists(base.Path))
+            {
+                Logger.Log("Could not copy a folder. Source folder does not exist.");
+                return;
+            }
+            
+            // Create a dir where we are going to copy files
+            Directory.CreateDirectory(destPath);
+            
+            // Copy each file
+            foreach (var file in Directory.GetFiles(base.Path))
+            {
+                System.IO.File.Copy(base.Path, destPath, overrideFile);
+            }
+
+            // Copy each folder (recursive)
+            foreach (var dir in Directory.GetDirectories(base.Path))
+            {
+                Copy(destPath, overrideFile);
+            }
+        }
+        catch
+        {
+            Logger.Log($"Could not copy folder.");
+        }
     }
 }

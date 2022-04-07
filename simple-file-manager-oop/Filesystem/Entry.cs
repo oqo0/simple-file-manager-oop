@@ -29,7 +29,6 @@ public abstract class Entry
     {
         _name = name;
     }
-
-    public abstract void Copy(string path);
+    
     public abstract void Copy(string path, bool overwriteFile);
 }
