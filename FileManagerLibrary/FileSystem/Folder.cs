@@ -76,4 +76,9 @@ public class Folder
             Copy(dir, pathWhere);
         }
     }
+
+    public static void Search(PathEntry path)
+    {
+        
+    }
 }

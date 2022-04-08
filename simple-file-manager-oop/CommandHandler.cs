@@ -1,4 +1,5 @@
 using FileManagerLibrary;
+using FileManagerLibrary.ConsoleOutput;
 using FileManagerLibrary.FileSystem;
 
 namespace simple_file_manager_oop;
@@ -19,7 +20,7 @@ public static class CommandHandler
     private static void Execute(string text, ref PathEntry path)
     {
         string[] commandArgs = text.Split(' ');
-
+        
         switch (commandArgs[0].ToLower())
         {
             case "cd":
@@ -86,7 +87,16 @@ public static class CommandHandler
 
             case "search":
             {
-                Dire
+                Output.ShowSearchResult(commandArgs[1], commandArgs[2]);
+                
+                break;
+            }
+
+            case "attributes":
+            {
+                Enum.TryParse(commandArgs[2], out System.IO.FileAttributes fileAttributes);
+                FileEntry.ChangeAttributes(commandArgs[1], fileAttributes);
+                break;
             }
             
             case "quit":

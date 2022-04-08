@@ -113,4 +113,9 @@ public class FileEntry
     {
         File.Copy(pathFrom, pathWhere);
     }
+
+    public static void ChangeAttributes(string path, System.IO.FileAttributes fileAttributes)
+    {
+        File.SetAttributes(path, fileAttributes);
+    }
 }

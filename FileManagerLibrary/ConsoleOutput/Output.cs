@@ -54,8 +54,30 @@ public static class Output
         {
             
             FileEntry file = _files[i];
-            Console.WriteLine($"{file.Name, 32} {file.CreationDateTime, 25} | Size: {file.Size} bytes | {file.Words}, {file.Lines}, {file.Paragraphs}, {file.Symbols}");
+            Console.WriteLine($"{file.Name, 32} {file.CreationDateTime, 25} {file.Size, 10} bytes | {file.Words}, {file.Lines}, {file.Paragraphs}, {file.Symbols}");
         }
+
+        ShowSeparator();
+    }
+
+    public static void ShowSearchResult(string path, string searchOption)
+    {
+        Console.Clear();
+        
+        IEnumerable<string> results = Directory.EnumerateFileSystemEntries(path, searchOption, SearchOption.AllDirectories);
+
+        Console.WriteLine("Результат поиска:");
+        
+        foreach (var entry in results)
+        {
+            Console.WriteLine("-> " + entry);
+        }
+
+        Console.BackgroundColor = ConsoleColor.White;
+        Console.ForegroundColor = ConsoleColor.Black;
+        Console.WriteLine("Нажмите на любую клавишу для продолжения...");
+        Console.ResetColor();
+        Console.ReadKey();
     }
     
     /// <summary>

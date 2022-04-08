@@ -16,6 +16,8 @@ namespace simple_file_manager_oop
                 Output.ShowFiles(path);
                 
                 CommandHandler.Perform(ref path);
+                
+                Console.Clear();
             }
         }
     }
