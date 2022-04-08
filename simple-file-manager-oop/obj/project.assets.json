@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {}
+    "net6.0": {
+      "FileManagerLibrary/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/FileManagerLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/FileManagerLibrary.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "FileManagerLibrary/1.0.0": {
+      "type": "project",
+      "path": "../FileManagerLibrary/FileManagerLibrary.csproj",
+      "msbuildProject": "../FileManagerLibrary/FileManagerLibrary.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net6.0": []
+    "net6.0": [
+      "FileManagerLibrary >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "/home/oqo0/.nuget/packages/": {}
@@ -31,7 +50,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "/home/oqo0/RiderProjects/simple-file-manager-oop/FileManagerLibrary/FileManagerLibrary.csproj": {
+              "projectPath": "/home/oqo0/RiderProjects/simple-file-manager-oop/FileManagerLibrary/FileManagerLibrary.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
