@@ -32,6 +32,10 @@ public class PathEntry
     /// </summary>
     public void GoUp()
     {
+        // нельзя подняться выше корневой директории
+        if (PathStr != "/")
+            return;
+        
         string[] pathArray = PathStr.Split('/');
         Array.Resize(ref pathArray, pathArray.Length - 1);
 

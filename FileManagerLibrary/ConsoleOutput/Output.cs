@@ -9,6 +9,11 @@ public static class Output
     private static List<FileEntry> _files = new List<FileEntry>();
 
     public static FilePage Page = new FilePage();
+
+    public static void ShowPath(PathEntry path)
+    {
+        Console.WriteLine($"Current path: {path.PathStr}");
+    }
     
     /// <summary>
     /// Показать директории
@@ -16,44 +21,15 @@ public static class Output
     /// <param name="path"></param>
     public static void ShowDirs(PathEntry path)
     {
+        ShowSeparator();
+        
         _path = path;
         GetContainedDirs();
         
         foreach (var folder in _folders)
         {
-            Console.WriteLine($"{folder.Name, 40} {folder.CreationDateTime, 25}");
+            Console.WriteLine($"{folder.Name, 32} {folder.CreationDateTime, 25}");
         }
-    }
-    
-    /// <summary>
-    /// Показать директории в виде файлового дерева
-    /// </summary>
-    /// <param name="path"></param>
-    public static void ShowDirsTree(PathEntry path, int recursionDepth)
-    {
-        // /home/oqo0/Desktop/   ,  1
-
-        string newPath = String.Empty;
-        
-        for (int i = 0; i <= recursionDepth; i++)
-            newPath += path.PathStr.Split('/')[i];
-
-        _path = new PathEntry(newPath);
-        GetContainedDirs();
-
-        foreach (var folder in _folders)
-        {
-            for (int i = 0; i <= folder.Path.Nesting; i++)
-                Console.Write("├── ");
-            
-            Console.Write(folder.Name + "    " + folder.CreationDateTime + "\n");
-
-            if (folder.Name == _path.PathStr.Split('/')[recursionDepth])
-            {
-                ShowDirsTree(path, ++recursionDepth);
-            }
-        }
-        
     }
     
     /// <summary>
@@ -62,6 +38,8 @@ public static class Output
     /// <param name="path"></param>
     public static void ShowFiles(PathEntry path)
     {
+        ShowSeparator();
+
         _path = path;
         GetContainedFiles();
 
@@ -76,7 +54,7 @@ public static class Output
         {
             
             FileEntry file = _files[i];
-            Console.WriteLine($"{file.Name, 40} {file.CreationDateTime, 25} | Size: {file.Size} bytes");
+            Console.WriteLine($"{file.Name, 32} {file.CreationDateTime, 25} | Size: {file.Size} bytes");
         }
     }
     
@@ -106,5 +84,16 @@ public static class Output
             PathEntry path = new PathEntry(folder);
             _files.Add(new FileEntry(path));
         }
+    }
+
+    /// <summary>
+    /// Console width line
+    /// </summary>
+    private static void ShowSeparator()
+    {
+        for (int i = 0; i < Console.WindowWidth; i++)
+            Console.Write("═");
+        
+        Console.WriteLine();
     }
 }
