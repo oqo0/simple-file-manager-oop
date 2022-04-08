@@ -1,6 +1,5 @@
-﻿using System;
-using simple_file_manager_oop.Filesystem;
-using File = simple_file_manager_oop.Filesystem.File;
+﻿using FileManagerLibrary.FileSystem;
+using FileManagerLibrary.ConsoleOutput;
 
 namespace simple_file_manager_oop
 {
@@ -8,11 +7,13 @@ namespace simple_file_manager_oop
     {
         public static void Main()
         {
-            Folder folder = new Folder("/");
+            PathEntry path = new PathEntry("/home/oqo0/Desktop/");
             
-            folder.ShowDirs();
-            
-            Console.ReadKey();
+            Output.ShowDirs(path);
+            Console.WriteLine("------------");
+            Output.ShowFiles(path);
+
+            Console.ReadLine();
         }
     }
 }
