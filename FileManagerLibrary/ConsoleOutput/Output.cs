@@ -26,6 +26,37 @@ public static class Output
     }
     
     /// <summary>
+    /// Показать директории в виде файлового дерева
+    /// </summary>
+    /// <param name="path"></param>
+    public static void ShowDirsTree(PathEntry path, int recursionDepth)
+    {
+        // /home/oqo0/Desktop/   ,  1
+
+        string newPath = String.Empty;
+        
+        for (int i = 0; i <= recursionDepth; i++)
+            newPath += path.PathStr.Split('/')[i];
+
+        _path = new PathEntry(newPath);
+        GetContainedDirs();
+
+        foreach (var folder in _folders)
+        {
+            for (int i = 0; i <= folder.Path.Nesting; i++)
+                Console.Write("├── ");
+            
+            Console.Write(folder.Name + "    " + folder.CreationDateTime + "\n");
+
+            if (folder.Name == _path.PathStr.Split('/')[recursionDepth])
+            {
+                ShowDirsTree(path, ++recursionDepth);
+            }
+        }
+        
+    }
+    
+    /// <summary>
     /// Показать файлы в директории
     /// </summary>
     /// <param name="path"></param>

@@ -7,10 +7,10 @@ namespace simple_file_manager_oop
     {
         public static void Main()
         {
-            PathEntry path = new PathEntry("/home/oqo0/Desktop/");
+            PathEntry path = new PathEntry("/");
             
-            Output.ShowDirs(path);
-            Console.WriteLine("------------");
+            Output.ShowDirsTree(path, 0);
+            Console.WriteLine("---------------------------------------------------------------------");
             Output.ShowFiles(path);
 
             Console.ReadLine();

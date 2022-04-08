@@ -10,7 +10,7 @@ public class PathEntry
     }
     
     public string PathStr { get; private set; }
-
+    
     /// <summary>
     /// Глубина вложенности в файловой системе
     /// </summary>
