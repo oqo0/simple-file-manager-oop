@@ -30,4 +30,50 @@ public class Folder
     {
         CreationDateTime = Directory.GetCreationTime(Path.PathStr);
     }
+    
+    /// <summary>
+    /// создать директорию
+    /// </summary>
+    public static void Create(string path)
+    {
+        Directory.CreateDirectory(path);
+    }
+
+    /// <summary>
+    /// удалить директорию
+    /// </summary>
+    public static void Delete(string path)
+    {
+        Directory.Delete(path);
+    }
+
+    /// <summary>
+    /// переименовать директорию
+    /// </summary>
+    public static void Rename(string oldName, string newName)
+    {
+        DirectoryInfo dir = Directory.GetParent(oldName);
+        
+        Directory.Move(oldName, dir.FullName + newName);
+    }
+    
+    /// <summary>
+    /// Копирование папки
+    /// </summary>
+    /// <param name="pathFrom"></param>
+    /// <param name="pathWhere"></param>
+    public static void Copy(string pathFrom, string pathWhere)
+    {
+        Directory.CreateDirectory(pathWhere);
+
+        foreach (var file in Directory.GetFiles(pathFrom))
+        {
+            File.Copy(file, pathWhere);
+        }
+        
+        foreach (var dir in Directory.GetDirectories(pathFrom))
+        {
+            Copy(dir, pathWhere);
+        }
+    }
 }

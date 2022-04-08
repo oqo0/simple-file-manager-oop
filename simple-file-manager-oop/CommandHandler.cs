@@ -1,3 +1,4 @@
+using FileManagerLibrary;
 using FileManagerLibrary.FileSystem;
 
 namespace simple_file_manager_oop;
@@ -19,7 +20,7 @@ public static class CommandHandler
     {
         string[] commandArgs = text.Split(' ');
 
-        switch (commandArgs[0])
+        switch (commandArgs[0].ToLower())
         {
             case "cd":
             {
@@ -36,6 +37,61 @@ public static class CommandHandler
             case "kd":
             {
                 path.Clear();
+                break;
+            }
+
+            case "create":
+            {
+                if (commandArgs[1] == "folder")
+                    Folder.Create(commandArgs[2]);
+
+                if (commandArgs[1] == "file")
+                    FileEntry.Create(commandArgs[2]);
+                
+                break;
+            }
+
+            case "delete":
+            {
+                if (commandArgs[1] == "folder")
+                    Folder.Delete(commandArgs[2]);
+
+                if (commandArgs[1] == "file")
+                    FileEntry.Delete(commandArgs[2]);  
+                
+                break;
+            }
+
+            case "rename":
+            {
+                if (commandArgs[1] == "folder")
+                    Folder.Rename(commandArgs[2], commandArgs[3]);
+
+                if (commandArgs[1] == "file")
+                    FileEntry.Rename(commandArgs[2], commandArgs[3]);
+                
+                break;
+            }
+
+            case "copy":
+            {
+                if (commandArgs[1] == "folder")
+                    Folder.Copy(commandArgs[2], commandArgs[3]);
+
+                if (commandArgs[1] == "file")
+                    FileEntry.Copy(commandArgs[2], commandArgs[3]);
+                
+                break;
+            }
+
+            case "search":
+            {
+                Dire
+            }
+            
+            case "quit":
+            {
+                Environment.Exit(0);
                 break;
             }
         }

@@ -54,7 +54,7 @@ public static class Output
         {
             
             FileEntry file = _files[i];
-            Console.WriteLine($"{file.Name, 32} {file.CreationDateTime, 25} | Size: {file.Size} bytes");
+            Console.WriteLine($"{file.Name, 32} {file.CreationDateTime, 25} | Size: {file.Size} bytes | {file.Words}, {file.Lines}, {file.Paragraphs}, {file.Symbols}");
         }
     }
     
