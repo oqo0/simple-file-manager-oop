@@ -7,14 +7,8 @@ public class FileEntry
     public FileEntry(PathEntry path)
     {
         Path = path;
-        
-        GetName();
-        GetSize();
-        GetCreationDateTime();
-        GetWords();
-        GetLines();
-        GetParagraphs();
-        GetSymbols();
+
+        GetStaticData();
     }
     
     public PathEntry Path { get; }
@@ -27,83 +21,35 @@ public class FileEntry
     public long Symbols { get; private set; }
 
     /// <summary>
-    /// Получим имя файла
+    /// Получаем статические данные файла
     /// </summary>
-    private void GetName()
+    private void GetStaticData()
     {
         string filePath = Path.PathStr;
+
         Name = filePath.Split('/').Last();
-    }
-
-    /// <summary>
-    /// Получим размер файла
-    /// </summary>
-    private void GetSize()
-    {
-        string filePath = Path.PathStr;
         Size = new FileInfo(filePath).Length;
-    }
-
-    /// <summary>
-    /// Получим дату и время создания файла
-    /// </summary>
-    private void GetCreationDateTime()
-    {
-        CreationDateTime = File.GetCreationTime(Path.PathStr);
-    }
-
-    private void GetWords()
-    {
+        CreationDateTime = File.GetCreationTime(filePath);
+        
         try
         {
             string fileText = File.ReadAllText(Path.PathStr);
+            string[] fileLines = File.ReadAllLines(Path.PathStr);
+            
             Words = fileText.Split(' ').Length;
+            Lines = fileLines.Length;
+            Paragraphs = fileText.Split("   ").Length;
+            Symbols = fileText.Length;
         }
         catch
         {
             Words = 0;
-        }
-    }
-
-    private void GetLines()
-    {
-        try
-        {
-            string[] lines = File.ReadAllLines(Path.PathStr);
-            Lines = lines.Length;
-        }
-        catch
-        {
             Lines = 0;
-        }
-    }
-    
-    private void GetParagraphs()
-    {
-        try
-        {
-            string fileText = File.ReadAllText(Path.PathStr);
-            Paragraphs = fileText.Split("   ").Length;
-        }
-        catch
-        {
             Paragraphs = 0;
-        }
-    }
-
-    private void GetSymbols()
-    {
-        try
-        {
-            string text = File.ReadAllText(Path.PathStr);
-            Symbols = text.Length;
-        }
-        catch
-        {
             Symbols = 0;
         }
     }
-    
+
     /// <summary>
     /// создать файл
     /// </summary>
