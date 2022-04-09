@@ -11,7 +11,7 @@ public static class CommandHandler
     /// </summary>
     public static void Perform(ref PathEntry path)
     {
-        Console.Write("Enter command > ");
+        Console.Write("Введите команду > ");
         string command = Console.ReadLine();
         Execute(command, ref path);
         Console.WriteLine();
@@ -92,6 +92,13 @@ public static class CommandHandler
                 break;
             }
 
+            case "page":
+            {
+                Output.Page.Index = int.Parse(commandArgs[1]);
+                
+                break;
+            }
+            
             case "attributes":
             {
                 Enum.TryParse(commandArgs[2], out System.IO.FileAttributes fileAttributes);
