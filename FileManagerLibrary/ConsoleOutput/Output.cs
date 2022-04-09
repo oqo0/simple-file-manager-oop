@@ -12,7 +12,7 @@ public static class Output
 
     public static void ShowPath(PathEntry path)
     {
-        Console.WriteLine($"Current path: {path.PathStr}");
+        Console.WriteLine($"Путь: {path.PathStr}");
     }
     
     /// <summary>
@@ -25,6 +25,8 @@ public static class Output
         
         _path = path;
         GetContainedDirs();
+        
+        Console.WriteLine($"Директории:");
         
         foreach (var folder in _folders)
         {
