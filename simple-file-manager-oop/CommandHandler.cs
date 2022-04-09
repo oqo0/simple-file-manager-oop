@@ -92,6 +92,13 @@ public static class CommandHandler
                 break;
             }
 
+            case "page":
+            {
+                Output.Page.Index = int.Parse(commandArgs[1]);
+                
+                break;
+            }
+            
             case "attributes":
             {
                 Enum.TryParse(commandArgs[2], out System.IO.FileAttributes fileAttributes);

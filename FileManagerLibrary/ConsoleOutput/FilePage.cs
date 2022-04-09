@@ -6,26 +6,11 @@ public class FilePage
 
     public int Index
     {
-        get
-        {
-            return _index;
-        }
-        private set
+        get => _index;
+        set
         {
             if (value >= 1)
-            {
                 _index = value;
-            }
         }
-    }
-
-    public void OpenPrevious()
-    {
-        Index -= 1;
-    }
-    
-    public void OpenNext()
-    {
-        Index += 1;
     }
 }

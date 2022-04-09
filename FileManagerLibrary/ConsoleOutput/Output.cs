@@ -39,10 +39,13 @@ public static class Output
     public static void ShowFiles(PathEntry path)
     {
         ShowSeparator();
-
+        
         _path = path;
         GetContainedFiles();
 
+        int pagesAmount = (_files.Count / 5) + 1;
+        Console.WriteLine($"Файлы, страница: {Page.Index}/{pagesAmount}");
+        
         int pageSize = 5;
         int startFileIndex = (Page.Index - 1) * pageSize;
         int endFileIndex = (Page.Index - 1) * pageSize + pageSize;
@@ -52,7 +55,6 @@ public static class Output
         
         for (int i = startFileIndex; i < endFileIndex; i++)
         {
-            
             FileEntry file = _files[i];
             Console.WriteLine($"{file.Name, 32} {file.CreationDateTime, 25} {file.Size, 10} bytes | {file.Words}, {file.Lines}, {file.Paragraphs}, {file.Symbols}");
         }
@@ -60,17 +62,24 @@ public static class Output
         ShowSeparator();
     }
 
+    /// <summary>
+    /// Показ результатов поиска
+    /// Открывается поверх содержимого
+    /// </summary>
+    /// <param name="path"></param>
+    /// <param name="searchOption"></param>
     public static void ShowSearchResult(string path, string searchOption)
     {
         Console.Clear();
         
-        IEnumerable<string> results = Directory.EnumerateFileSystemEntries(path, searchOption, SearchOption.AllDirectories);
+        IEnumerable<string> searchResults = Directory.EnumerateFileSystemEntries(path, searchOption, SearchOption.AllDirectories);
 
         Console.WriteLine("Результат поиска:");
-        
-        foreach (var entry in results)
+
+        int i = 0;
+        foreach (var entry in searchResults)
         {
-            Console.WriteLine("-> " + entry);
+            Console.WriteLine($"{i} - {entry}");
         }
 
         Console.BackgroundColor = ConsoleColor.White;

@@ -54,26 +54,54 @@ public class FileEntry
 
     private void GetWords()
     {
-        string fileText = File.ReadAllText(Path.PathStr);
-        Words = fileText.Split(' ').Length;
+        try
+        {
+            string fileText = File.ReadAllText(Path.PathStr);
+            Words = fileText.Split(' ').Length;
+        }
+        catch
+        {
+            Words = 0;
+        }
     }
 
     private void GetLines()
     {
-        string[] lines = File.ReadAllLines(Path.PathStr);
-        Words = lines.Length;
+        try
+        {
+            string[] lines = File.ReadAllLines(Path.PathStr);
+            Lines = lines.Length;
+        }
+        catch
+        {
+            Lines = 0;
+        }
     }
     
     private void GetParagraphs()
     {
-        string fileText = File.ReadAllText(Path.PathStr);
-        Paragraphs = fileText.Split("   ").Length;
+        try
+        {
+            string fileText = File.ReadAllText(Path.PathStr);
+            Paragraphs = fileText.Split("   ").Length;
+        }
+        catch
+        {
+            Paragraphs = 0;
+        }
     }
 
     private void GetSymbols()
     {
-        string text = File.ReadAllText(Path.PathStr);
-        Words = text.Length;
+        try
+        {
+            string text = File.ReadAllText(Path.PathStr);
+            Symbols = text.Length;
+        }
+        catch
+        {
+            Symbols = 0;
+        }
     }
     
     /// <summary>
